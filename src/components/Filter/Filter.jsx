@@ -10,10 +10,8 @@ export const Filter = () => {
   };
 
   return (
-    <Box maxWidth="sm" sx={{ ml: 3, mt: 3 }}>
-      <Typography variant="h5" component="p">
-        Find contacts by name
-      </Typography>
+    <Box width="500px" sx={{ ml: 3, mt: 3 }}>
+      <Typography variant="body1">Find contacts by name</Typography>
       <TextField
         fullWidth
         id="filter"

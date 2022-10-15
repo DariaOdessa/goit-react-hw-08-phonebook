@@ -4,7 +4,7 @@ import {
   useFetchContactsQuery,
   useCreateContactMutation,
 } from 'redux/contactsApi';
-import { Box, Button, Grid, TextField } from '@mui/material';
+import { Box, Button, Grid, TextField, Typography } from '@mui/material';
 
 export const ContactForm = () => {
   const [formInput, setFormInput] = useState({
@@ -40,7 +40,7 @@ export const ContactForm = () => {
       <Box component="form" onSubmit={handleAddContact}>
         <Grid container spacing={4}>
           <Grid item xs={12}>
-            <p> Name</p>
+            <Typography variant="body1"> Name</Typography>
             <TextField
               type="text"
               name="name"
@@ -57,7 +57,7 @@ export const ContactForm = () => {
             />
           </Grid>
           <Grid item xs={12}>
-            <p>Number</p>
+            <Typography variant="body1">Number</Typography>
             <TextField
               fullWidth
               id="number"

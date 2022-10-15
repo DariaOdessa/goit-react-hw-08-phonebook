@@ -1,5 +1,5 @@
 // import { Box } from 'components/Box';
-import { List, ListItem } from '@mui/material';
+import { Divider, List, ListItem } from '@mui/material';
 import { ContactItem } from 'components/ContactItem/ContactItem';
 import { useSelector } from 'react-redux';
 import { useFetchContactsQuery } from 'redux/contactsApi';
@@ -20,9 +20,12 @@ export const ContactList = () => {
   return (
     <List sx={{ width: '100%', maxWidth: 500 }}>
       {vizibleContacts.reverse().map(contact => (
-        <ListItem key={contact.id} alignItems="flex-start">
-          <ContactItem contact={contact} />
-        </ListItem>
+        <div key={contact.id}>
+          <ListItem alignItems="flex-start">
+            <ContactItem contact={contact} />
+          </ListItem>
+          <Divider variant="inset" />
+        </div>
       ))}
     </List>
   );
