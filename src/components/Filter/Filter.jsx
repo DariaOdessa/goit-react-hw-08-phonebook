@@ -1,6 +1,6 @@
+import { Box, TextField, Typography } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { filterReduser } from 'redux/filterSlice';
-import { InputName, Input } from './Filter.styled';
 
 export const Filter = () => {
   const dispatch = useDispatch();
@@ -10,9 +10,18 @@ export const Filter = () => {
   };
 
   return (
-    <>
-      <InputName>Find contacts by name</InputName>
-      <Input type="text" onChange={onChangeFilter} />
-    </>
+    <Box maxWidth="sm" sx={{ ml: 3, mt: 3 }}>
+      <Typography variant="h5" component="p">
+        Find contacts by name
+      </Typography>
+      <TextField
+        fullWidth
+        id="filter"
+        variant="outlined"
+        type="text"
+        onChange={onChangeFilter}
+        sx={{ mt: 2 }}
+      />
+    </Box>
   );
 };

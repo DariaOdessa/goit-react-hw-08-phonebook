@@ -1,7 +1,8 @@
-import { Box } from 'components/Box';
+// import { Box } from 'components/Box';
+import { List, ListItem } from '@mui/material';
 import { ContactItem } from 'components/ContactItem/ContactItem';
 import { useSelector } from 'react-redux';
-import { useFetchContactsQuery } from 'redux/contactsSlice';
+import { useFetchContactsQuery } from 'redux/contactsApi';
 import { selectFilter } from 'redux/selectors';
 
 const getVizibleContacts = (contacts, filter) => {
@@ -17,14 +18,12 @@ export const ContactList = () => {
   const vizibleContacts = getVizibleContacts(contacts, filter);
 
   return (
-    <table>
-      <tbody>
-        {vizibleContacts.reverse().map(contact => (
-          <Box as="tr" mb={3} key={contact.id}>
-            <ContactItem contact={contact} />
-          </Box>
-        ))}
-      </tbody>
-    </table>
+    <List sx={{ width: '100%', maxWidth: 500 }}>
+      {vizibleContacts.reverse().map(contact => (
+        <ListItem key={contact.id} alignItems="flex-start">
+          <ContactItem contact={contact} />
+        </ListItem>
+      ))}
+    </List>
   );
 };

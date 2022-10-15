@@ -1,39 +1,62 @@
 import PropTypes from 'prop-types';
-import {
-  Button,
-  ContactName,
-  ContactNumber,
-  TableCell,
-} from './ContactItem.styled';
-import { useDeleteContactMutation } from 'redux/contactsSlice';
+import React from 'react';
+import { useDeleteContactMutation } from 'redux/contactsApi';
 import { Spinner } from 'components/Spinner/Spinner';
 import Avatar from 'react-avatar';
+import DeleteIcon from '@mui/icons-material/Delete';
+
+import {
+  IconButton,
+  ListItemAvatar,
+  ListItemText,
+  Typography,
+} from '@mui/material';
 
 export const ContactItem = ({ contact: { name, number, id } }) => {
   const [deleteContact, { isLoading: isDeleting }] = useDeleteContactMutation();
 
   return (
     <>
-      <TableCell>
+      <ListItemAvatar>
         <Avatar round={true} size={40} name={name} />
-      </TableCell>
-      <TableCell>
-        <ContactName>{name}</ContactName>
-      </TableCell>
-      <TableCell>
-        <ContactNumber>{number}</ContactNumber>
-      </TableCell>
-      <TableCell>
-        {' '}
-        <Button
-          type="button"
-          onClick={() => deleteContact(id)}
-          disabled={isDeleting}
-        >
-          {isDeleting && <Spinner size={14} />}
-          Delete
-        </Button>
-      </TableCell>
+      </ListItemAvatar>
+      <ListItemText
+        primary={
+          <React.Fragment>
+            <Typography
+              sx={{ display: 'inline' }}
+              component="span"
+              variant="h4"
+              color="text.primary"
+            >
+              {name}
+            </Typography>
+          </React.Fragment>
+        }
+        secondary={
+          <React.Fragment>
+            <Typography
+              sx={{ display: 'inline', ml: 2 }}
+              component="span"
+              variant="h6"
+              color="text.primary"
+            >
+              {number}
+            </Typography>
+          </React.Fragment>
+        }
+      />
+      <IconButton
+        variant="contained"
+        aria-label="delete"
+        size="large"
+        type="button"
+        onClick={() => deleteContact(id)}
+        disabled={isDeleting}
+      >
+        <DeleteIcon fontSize="inherit" />
+        {isDeleting && <Spinner />}
+      </IconButton>
     </>
   );
 };
