@@ -51,10 +51,11 @@ export const ContactItem = ({ contact: { name, number, id } }) => {
         aria-label="delete"
         size="large"
         type="button"
+        color="primary"
         onClick={() => deleteContact(id)}
         disabled={isDeleting}
       >
-        <DeleteIcon fontSize="inherit" />
+        {!isDeleting && <DeleteIcon fontSize="inherit" />}
         {isDeleting && <Spinner />}
       </IconButton>
     </>
